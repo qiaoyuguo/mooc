@@ -1,0 +1,25 @@
+{
+    "name": "Homework 2",
+    "endpoint": "cal/cs88/sp20/hw02",
+    "src": [
+        "hw02.py"
+    ],
+    "tests": {
+        "hw02.py:falling": "doctest",
+        "hw02.py:hailstone": "doctest",
+        "hw02.py:odd_even": "doctest",
+        "hw02.py:classify": "doctest",
+        "hw02.py:deep_list": "doctest",
+        "hw02.py:arange": "doctest",
+        "hw02.py:count_cond": "doctest",
+        "hw02.py:match_and_apply": "doctest"
+    },
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}
