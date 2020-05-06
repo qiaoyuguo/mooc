@@ -8,7 +8,7 @@ def twice(f,x):
     >>> twice(square,3)
     81
     """
-    "*** YOUR CODE HERE ***"
+    return f(f(x))
 
 def increment(x):
     return x + 1
@@ -19,7 +19,9 @@ def apply_n(f, x, n):
     >>> apply_n(increment, 2, 10)
     12
     """
-    "*** YOUR CODE HERE ***"
+    if n == 1:
+        return f(x)
+    return f(apply_n(f, x, n-1))
 
 
 def zero(f):
@@ -38,11 +40,11 @@ def successor(n):
 
 def one(f):
     """Church numeral 1: same as successor(zero)"""
-    "*** YOUR CODE HERE ***"
+    return successor(zero)
 
 def two(f):
     """Church numeral 2: same as successor(successor(zero))"""
-    "*** YOUR CODE HERE ***"
+    return successor(one)
 three = successor(two)
 
 def church_to_int(n):
@@ -57,7 +59,7 @@ def church_to_int(n):
     >>> church_to_int(three)
     3
     """
-    "*** YOUR CODE HERE ***"
+    return n(0)
 
 def add_church(m, n):
     """Return the Church numeral for m + n, for Church numerals m and n.
