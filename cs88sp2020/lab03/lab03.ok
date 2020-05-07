@@ -1,0 +1,29 @@
+{
+    "name": "Lab 3",
+    "endpoint": "cal/cs88/sp20/lab03",
+    "src": [
+        "lab03.py"
+    ],
+    "tests": {
+        "lab03.py:where_above": "doctest",
+        "lab03.py:minmax": "doctest",
+        "lab03.py:common_member": "doctest",
+        "lab03.py:closest_power_2": "doctest",
+		"tests/extra_credit.py": "ok_test",
+        "lab03_extra.py:total_price": "doctest"
+    },
+    "default_tests": [
+        "where_above",
+        "minmax",
+        "common_member",
+        "closest_power_2",
+		"extra_credit"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}
