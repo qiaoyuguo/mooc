@@ -40,8 +40,8 @@ def filter(f, s):
     """
     if s == []:
         return []
-    elif f(x):
-        return [x] + filter(f, s[1:])
+    elif f(s[0]):
+        return [s[0]] + filter(f, s[1:])
     else:
         return filter(f, s[1:])
     
@@ -155,7 +155,7 @@ def decimal(n):
     while n > 0:
         lst.append(n % 10)
         n = n // 10
-    return lst
+    return list(reversed(lst))
 
 def binary(n):
     """Return a list representing the representation of a number in base 2.
@@ -165,4 +165,10 @@ def binary(n):
     >>> binary(-136)
     ['-', 1, 0, 0, 0, 1, 0, 0, 0]
     """
-    return []     
+    if n < 0:
+        return ['-'] + binary(-n)
+    lst = []
+    while n > 0:
+        lst.append(n % 2)
+        n = n // 2 
+    return list(reversed(lst))
