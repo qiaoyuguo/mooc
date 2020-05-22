@@ -15,7 +15,12 @@ def flatten(lst):
     >>> flatten(x)
     [1, 1, 1, 1, 1, 1]
     """
-    "*** YOUR CODE HERE ***"
+    if lst == []:
+        return []
+    elif type(lst[0]) == list:
+        return flatten(lst[0]) + flatten(lst[1:])
+    else:
+        return [lst[0]] + flatten(lst[1:])
 
 # Q7
 def merge(lst1, lst2):
@@ -30,7 +35,14 @@ def merge(lst1, lst2):
     >>> merge([5, 7], [2, 4, 6])
     [2, 4, 5, 6, 7]
     """
-    "*** YOUR CODE HERE ***"
+    if lst1 == []:
+        return lst2[:]
+    elif lst2 == []:
+        return lst1[:]
+    elif lst1[0] <= lst2[0]:
+        return [lst1[0]] + merge(lst1[1:], lst2)
+    else:
+        return [lst2[0]] + merge(lst1[:], lst2[1:])
 
 ######################
 ### Connect N Game ###
@@ -43,7 +55,7 @@ def create_row(size):
     >>> create_row(5)
     ['-', '-', '-', '-', '-']
     """
-    "*** YOUR CODE HERE ***"
+    return ['-'] * size
 
 
 def create_board(rows, columns):
@@ -52,7 +64,7 @@ def create_board(rows, columns):
     >>> create_board(3, 5)
     [['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-']]
     """
-    "*** YOUR CODE HERE ***"
+    return [create_row(columns)] * rows
 
 
 def replace_elem(lst, index, elem):
@@ -67,8 +79,9 @@ def replace_elem(lst, index, elem):
     False
     """
     assert index >= 0 and index < len(lst), 'Index is out of bounds'
-    "*** YOUR CODE HERE ***"
-
+    new_lst = lst[:]
+    new_lst[index] = elem
+    return new_lst
 
 def get_piece(board, row, column):
     """Returns the piece at location (row, column) in the board.
@@ -82,7 +95,7 @@ def get_piece(board, row, column):
     >>> get_piece(board, 1, 1)
     '-'
     """
-    "*** YOUR CODE HERE ***"
+    return board[row][column]
 
 
 def put_piece(board, max_rows, column, player):
@@ -105,8 +118,12 @@ def put_piece(board, max_rows, column, player):
     >>> row
     -1
     """
-    "*** YOUR CODE HERE ***"
-
+    for row in range(max_rows-1, -1, -1):
+        if board[row][column] == '-':
+            new_board = board[:]
+            new_board[row][column] = player
+            return row, new_board
+    return (-1, board[:])
 
 def make_move(board, max_rows, max_cols, col, player):
     """Put player's piece in column COL of the board, if it is a valid move.
